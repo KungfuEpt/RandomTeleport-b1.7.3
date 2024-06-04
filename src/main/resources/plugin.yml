@@ -1,0 +1,12 @@
+name: RandomTeleport
+version: '${project.version}'
+main: ru.kungfuept.randomteleport.RandomTeleport
+commands:
+  safeleave:
+    description: teleports you from spawn to 500 blocks
+    usage: /safeleave
+    default: true
+  safeback:
+    description: teleports you to spawn
+    usage: /safeback
+    default: true
