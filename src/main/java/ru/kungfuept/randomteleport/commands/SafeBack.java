@@ -1,7 +1,6 @@
 package ru.kungfuept.randomteleport.commands;
 
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +30,7 @@ public class SafeBack implements CommandExecutor {
         if (cooldowns.containsKey(player.getName())) {
             long secondsLeft = ((cooldowns.get(player.getName()) / 1000) + cooldownTime) - (System.currentTimeMillis() / 1000);
             if (secondsLeft > 0) {
-                player.sendMessage(ChatColor.RED + "Вы не можете использовать эту команду ещё "+ ChatColor.YELLOW + secondsLeft + ChatColor.RED +" секунд!");
+                player.sendMessage(ChatColor.RED + "Вы не можете использовать эту команду ещё " + ChatColor.YELLOW + secondsLeft + ChatColor.RED + " секунд!");
                 return true;
             }
         }
@@ -41,7 +40,7 @@ public class SafeBack implements CommandExecutor {
         double distanceLoc = Math.sqrt(Math.pow((playerLoc.getBlockX() - spawn.getBlockX()), 2) + Math.pow((playerLoc.getBlockZ() - spawn.getBlockZ()), 2));
         int distance = (int) Math.round(distanceLoc);
 
-        if (distance < 1000) {
+        if (distance < 100) {
             int randomX = (int) (Math.random() * 10) + spawn.getBlockX();
             int randomZ = (int) (Math.random() * 10) + spawn.getBlockZ();
 

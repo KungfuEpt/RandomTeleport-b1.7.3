@@ -22,27 +22,27 @@ public class SafeLeave implements CommandExecutor {
 
         Player player = (Player) commandSender;
         World world = player.getWorld();
-        Location zero = player.getLocation().zero();
         Location playerLoc = player.getLocation();
+        Location spawn = world.getSpawnLocation();
 
         int cooldownTime = 30;
 
         if (cooldowns.containsKey(player.getName())) {
             long secondsLeft = ((cooldowns.get(player.getName()) / 1000) + cooldownTime) - (System.currentTimeMillis() / 1000);
             if (secondsLeft > 0) {
-                player.sendMessage(ChatColor.RED + "Вы не можете использовать эту команду ещё "+ ChatColor.YELLOW + secondsLeft + ChatColor.RED +" секунд!");
+                player.sendMessage(ChatColor.RED + "Вы не можете использовать эту команду ещё " + ChatColor.YELLOW + secondsLeft + ChatColor.RED + " секунд!");
                 return true;
             }
         }
 
         cooldowns.put(player.getName(), System.currentTimeMillis());
 
-        double distanceLoc = Math.sqrt(Math.pow((playerLoc.getBlockX() - zero.getBlockX()), 2) + Math.pow((playerLoc.getBlockZ() - zero.getBlockZ()), 2));
+        double distanceLoc = Math.sqrt(Math.pow((playerLoc.getBlockX() - spawn.getBlockX()), 2) + Math.pow((playerLoc.getBlockZ() - spawn.getBlockZ()), 2));
         int distance = (int) Math.round(distanceLoc);
 
-        if (distance < 500) {
-            int randomX = (int) (Math.random() * 1000);
-            int randomZ = (int) (Math.random() * 1000);
+        if (distance < 50) {
+            int randomX = (int) (Math.random() * 100);
+            int randomZ = (int) (Math.random() * 100);
             Location location = new Location(world, randomX, 70, randomZ);
 
             world.loadChunk(randomX, randomZ, true);
